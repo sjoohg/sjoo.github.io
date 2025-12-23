@@ -492,7 +492,7 @@ export default function App() {
 
             {/* Control Panel */}
             {showPanel && (
-                <aside className="absolute right-2 top-2 w-80 max-w-full bg-gray-800/90 backdrop-blur-md p-4 rounded-lg border border-gray-700 text-sm z-40">
+                <aside className="absolute right-2 top-2 w-80 max-w-full bg-gray-800/90 backdrop-blur-md p-4 rounded-lg border border-gray-700 text-sm z-40" style={{ position: 'absolute', right: 8, top: 8, zIndex: 1000 }}>
                     <div className="flex items-center justify-between mb-3">
                         <h3 className="font-semibold text-gray-200">Controls</h3>
                         <div className="flex gap-2">
@@ -571,7 +571,7 @@ export default function App() {
 
             {/* 2D Floating Window */}
             {show2D && (
-                <div ref={svgRef} onMouseDown={handleMouseDown} onTouchStart={handleTouchStart} style={{ left: windowPos.x, top: windowPos.y }} className="absolute z-30 p-2 bg-gray-800/90 border border-gray-700 rounded-lg w-80 h-80 touch-none cursor-grab" >
+                <div ref={svgRef} onMouseDown={handleMouseDown} onTouchStart={handleTouchStart} style={{ position: 'absolute', left: windowPos.x + 'px', top: windowPos.y + 'px', zIndex: 900 }} className="absolute z-30 p-2 bg-gray-800/90 border border-gray-700 rounded-lg w-80 h-80 touch-none cursor-grab" >
                     <svg width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet">
                         <rect width="100%" height="100%" fill={bgColor} />
                         <g transform="translate(400 400) scale(1 -1)">
