@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Small helper styles used in original component */
+html,body,#root { height: 100%; }

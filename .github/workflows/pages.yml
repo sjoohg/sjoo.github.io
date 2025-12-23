@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -19,16 +19,22 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Prepare artifact folder
-        run: |
-          mkdir -p public
-          # Copy repository contents to public, excluding Git metadata and workflow files
-          rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' ./ public/
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
 
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: dist
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
